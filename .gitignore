@@ -1,0 +1,6 @@
+*.out
+*.o
+conv
+hello
+server
+client
