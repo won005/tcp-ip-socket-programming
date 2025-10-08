@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+// data.txt 파일을 만들고, 그 안에 Let's go! 문자열을 작성하는 프로그램
+
 void error_handling(char* message);
 
 int main(void){
