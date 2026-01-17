@@ -144,9 +144,8 @@ int main() {
 
 
         
-
         // send : 클라이언트에게 응답 보내기
-        send(client_fd, "OK",2,0);
+        send(client_fd, response,strlen(response),0); //?
 
         // close : 이 클라이언트와 연결 종료
         close(client_fd);
@@ -175,7 +174,6 @@ int parse_command(char *buffer, char *parts[]){
 }
 
 
-
 // 7. 함수 구현
 
 void process_list(char *response) {
@@ -189,7 +187,7 @@ void process_list(char *response) {
             }
             strcat(response, storage[i].key);
             strcat(response, ",");
-            strcat(response, storage[i].value);
+            strcat(response, storage[i].value); //? response가 병합된 문자열을 갖게됨
             count++;
         }
     }

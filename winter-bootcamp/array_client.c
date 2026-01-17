@@ -43,6 +43,17 @@ int main() {
         server_addr.sin_port = htons(PORT);
         server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
         
+
+        // connect 호출 전에 이렇게 출력
+        printf("=== 연결 시도 정보 ===\n");
+        printf("sock fd: %d\n", sock);
+        printf("서버 IP: %s\n", inet_ntoa(server_addr.sin_addr));
+        printf("서버 포트: %d\n", ntohs(server_addr.sin_port));
+        printf("주소 체계: %d\n", server_addr.sin_family);
+
+
+
+
         if (connect(sock, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
             perror("connect() 실패");
             close(sock);
@@ -52,11 +63,11 @@ int main() {
         send(sock, command, strlen(command), 0);
         
         memset(response, 0, BUFFER_SIZE);
-        int recv_len = recv(sock, response, BUFFER_SIZE - 1, 0);
+        int recv_len = recv(sock, response, BUFFER_SIZE - 1, 0); //?이게 그러면 서버의 응답을 받는 메서드가 맞음
         
         if (recv_len > 0) {
             response[recv_len] = '\0';
-            printf("응답:\n%s\n\n", response);
+            printf("응답:%s\n\n", response); //? response가 ok 로 뜨네 그러면 서버한테 OK를 받았다는 얘기고
         } else {
             printf("응답 받기 실패\n\n");
         }
