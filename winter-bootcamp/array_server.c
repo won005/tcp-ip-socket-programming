@@ -5,8 +5,8 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-#define PORT 8000  //? 포트가 필요해?
-#define MAX_STORAGE 100  // 머간단하게.. 작은거니까 
+#define PORT 8000  // 포트 지정
+#define MAX_STORAGE 100  // 저장소 크기
 
 // 자료구조 정의
 typedef struct {
@@ -22,7 +22,7 @@ KeyValue storage[MAX_STORAGE];
 //파싱함수 선언
 int parse_command(char *buffer, char *parts[]);
 
-
+//함수 선언
 void process_list(char *response);
 void process_put(char *key, char *value, char *response);
 void process_get(char *key, char *response);
@@ -96,7 +96,8 @@ int main() {
         recv(client_fd,buffer,1000-1,0);
         printf("받은 명령 : %s \n",buffer);
 
-        //? 명령처리?
+
+        // 명령처리
 
         char response[4096];  // 응답 저장할 버퍼 (LIST는 길 수 있으니 크게)
         char temp[1000];      // buffer 복사본 (strtok가 원본을 바꾸니까)
@@ -165,10 +166,10 @@ int parse_command(char *buffer, char *parts[]){
     char *token = strtok(buffer,","); 
     //strtok : 문자열을 구분자로 나누는 함수
 
-    while(token != NULL){
-        parts[count] =token;
+    while(token != NULL){ // 잘라낸 단어가 NULL (없을때)까지
+        parts[count] =token; //잘라낸 단어
         count ++;
-        token = strtok(NULL,",");
+        token = strtok(NULL,","); //NULL 뜻 = 이전에 했던 작업 위치 이어가기
     }
     return count;
 }

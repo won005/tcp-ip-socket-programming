@@ -44,13 +44,12 @@ int main() {
         server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
         
 
-        // connect 호출 전에 이렇게 출력
-        printf("=== 연결 시도 정보 ===\n");
-        printf("sock fd: %d\n", sock);
-        printf("서버 IP: %s\n", inet_ntoa(server_addr.sin_addr));
-        printf("서버 포트: %d\n", ntohs(server_addr.sin_port));
-        printf("주소 체계: %d\n", server_addr.sin_family);
-
+        // // connect 호출 전에 이렇게 출력
+        // printf("=== 연결 시도 정보 ===\n");
+        // printf("sock fd: %d\n", sock);
+        // printf("서버 IP: %s\n", inet_ntoa(server_addr.sin_addr));
+        // printf("서버 포트: %d\n", ntohs(server_addr.sin_port));
+        // printf("주소 체계: %d\n", server_addr.sin_family);
 
 
 
